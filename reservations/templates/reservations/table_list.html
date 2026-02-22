@@ -1,0 +1,59 @@
+{% extends 'reservations/base.html' %}
+{% block title %}Столики ресторана{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3">Столики ресторана</h1>
+     <a href="#" class="btn btn-outline-secondary">
+        Забронировать столик
+    </a>
+  </div>
+
+  <h2 class="h4 mb-3">Зал</h2>
+  <div class="row g-4 mb-5">
+    {% for table in tables_hall %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title mb-2">{{ table.name }}</h5>
+              <span class="badge text-bg-secondary">{{ table.get_location_display }}</span>
+            </div>
+
+            {% if table.description %}
+              <p class="card-text text-muted">{{ table.description }}</p>
+            {% endif %}
+
+            <p class="mb-0"><strong>Вместимость:</strong> {{ table.seats }} чел.</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <h2 class="h4 mb-3">Терраса</h2>
+  <div class="row g-4">
+    {% for table in tables_terrace %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title mb-2">{{ table.name }}</h5>
+              <span class="badge text-bg-success">{{ table.get_location_display }}</span>
+            </div>
+
+            {% if table.description %}
+              <p class="card-text text-muted">{{ table.description }}</p>
+            {% endif %}
+
+            <p class="mb-0"><strong>Вместимость:</strong> {{ table.seats }} чел.</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}
