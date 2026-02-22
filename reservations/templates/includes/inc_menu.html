@@ -31,7 +31,7 @@
                             <li><a class="dropdown-item" href="#">Мои бронирования</a></li>
                             <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
                             {% else %}
-                            <li><a class="dropdown-item" href="#">Регистрация</a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:register' %}">Регистрация</a></li>
                             <li><a class="dropdown-item" href="{% url 'users:login' %}">Вход</a></li>
                             {% endif %}
                         </ul>
