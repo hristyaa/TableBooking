@@ -44,13 +44,13 @@ class Table(models.Model):
         help_text="Отметьте, подлежит ли столик бронированию",
     )
 
-    def __str__(self):
-        return f"{self.name} ({self.get_location_display()}) -  {str(self.seats)} чел."
-
     class Meta:
         verbose_name = "Столик"
         verbose_name_plural = "Столики"
         ordering = ["name"]
+
+    def __str__(self):
+        return f"{self.name} ({self.get_location_display()}) -  {str(self.seats)} чел."
 
 
 class Reservation(models.Model):
