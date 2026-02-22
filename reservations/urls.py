@@ -6,5 +6,5 @@ app_name = ReservationsConfig.name
 
 
 urlpatterns = [
-    path('', home, name='home'),
+    path("", home, name="home"),
 ]
