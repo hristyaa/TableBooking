@@ -1,0 +1,134 @@
+[
+{
+    "model": "reservations.table",
+    "pk": 1,
+    "fields": {
+        "name": "Стол № 1",
+        "description": "Столик у входа в ресторан",
+        "location": "hall",
+        "seats": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 2,
+    "fields": {
+        "name": "Стол № 2",
+        "description": "Столик у входа в ресторан",
+        "location": "hall",
+        "seats": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 3,
+    "fields": {
+        "name": "Стол № 3",
+        "description": "У окна",
+        "location": "hall",
+        "seats": 4,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 4,
+    "fields": {
+        "name": "Стол № 4",
+        "description": "У окна",
+        "location": "hall",
+        "seats": 6,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 5,
+    "fields": {
+        "name": "Стол № 5",
+        "description": "В центре",
+        "location": "hall",
+        "seats": 6,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 6,
+    "fields": {
+        "name": "Стол № 6",
+        "description": "В центре",
+        "location": "hall",
+        "seats": 4,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 7,
+    "fields": {
+        "name": "Стол № 7",
+        "description": "",
+        "location": "terrace",
+        "seats": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 8,
+    "fields": {
+        "name": "Стол № 8",
+        "description": "",
+        "location": "terrace",
+        "seats": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 9,
+    "fields": {
+        "name": "Стол № 9",
+        "description": "",
+        "location": "terrace",
+        "seats": 4,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 10,
+    "fields": {
+        "name": "Стол № 10",
+        "description": "",
+        "location": "terrace",
+        "seats": 6,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 11,
+    "fields": {
+        "name": "Стол № 11",
+        "description": "",
+        "location": "terrace",
+        "seats": 6,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 12,
+    "fields": {
+        "name": "Стол № 12",
+        "description": "",
+        "location": "terrace",
+        "seats": 4,
+        "is_active": true
+    }
+}
+]

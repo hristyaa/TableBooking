@@ -8,6 +8,14 @@ from users.models import User
 class Table(models.Model):
     "Модель столика в ресторане."
 
+    HALL = "hall"
+    TERRACE = "terrace"
+
+    LOCATION = [
+        (HALL, "В зале"),
+        (TERRACE, "На терассе"),
+    ]
+
     name = models.CharField(
         max_length=50,
         unique=True,
@@ -21,10 +29,11 @@ class Table(models.Model):
         help_text="Укажите описание столика",
     )
     location = models.CharField(
-        max_length=100,
-        blank=True,
+        max_length=20,
+        choices=LOCATION,
+        default=HALL,
         verbose_name="Местоположение столика",
-        help_text="Укажите местоположение столика",
+        help_text="Выберите местоположение столика",
     )
     seats = models.PositiveIntegerField(
         verbose_name="Вместимость столика", help_text="Укажите вместимость столика"
@@ -36,7 +45,7 @@ class Table(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} ({self.location}) - вместимость {str(self.seats)} чел."
+        return f"{self.name} ({self.get_location_display()}) -  {str(self.seats)} чел."
 
     class Meta:
         verbose_name = "Столик"
