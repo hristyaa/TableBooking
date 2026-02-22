@@ -6,7 +6,7 @@ from users.models import User
 
 
 class Table(models.Model):
-    "Модель столика в ресторане."
+    """Модель столика в ресторане."""
 
     HALL = "hall"
     TERRACE = "terrace"
@@ -54,7 +54,7 @@ class Table(models.Model):
 
 
 class Reservation(models.Model):
-    "Модель бронирования"
+    """Модель бронирования."""
 
     CREATED = "created"
     CONFIRMED = "confirmed"
@@ -103,7 +103,10 @@ class Reservation(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name="Дата изменения бронирования"
     )
-    token = models.CharField(max_length=100, verbose_name="Token", blank=True, null=True)
+    token = models.CharField(
+        max_length=100, verbose_name="Token", blank=True, null=True
+    )
+
     class Meta:
         verbose_name = "Бронирование"
         verbose_name_plural = "Бронирования"

@@ -1,19 +1,15 @@
 import secrets
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
-from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView,
-)
-from config import settings
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
+from config import settings
 from reservations.forms import ReservationForm
-from reservations.models import Table, Reservation
+from reservations.models import Reservation, Table
 
 # Create your views here.
 
@@ -54,6 +50,10 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("reservations:reservation_list")
 
     def form_valid(self, form):
+        """
+        Посетитель = создатель бронирования(авторизованный пользователь)
+        Подтверждение бронирования через email
+        """
         reservation = form.save(commit=False)
         user = self.request.user
         reservation.user = user
@@ -63,18 +63,21 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
         host = self.request.get_host()
         url = f"http://{host}/reservations/confirm/{token}/"
         send_mail(
-            subject='Подтверждение бронирования',
+            subject="Подтверждение бронирования",
             message=f"Здравствуйте, перейдите по ссылки для подтверждения бронирования {url}",
             from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email]
+            recipient_list=[user.email],
         )
         return super().form_valid(form)
 
+
 def reservation_verification(request, token):
+    """Подтверждение бронирования при переходе по ссылке на email"""
     reservation = get_object_or_404(Reservation, token=token)
     reservation.status = Reservation.CONFIRMED
     reservation.save()
-    return redirect('reservations:reservation_list')
+    return redirect("reservations:reservation_list")
+
 
 class ReservationUpdateView(UpdateView):
     model = Reservation
