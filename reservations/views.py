@@ -177,6 +177,8 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
         reservation.status = Reservation.CREATED
         token = secrets.token_hex(16)
         reservation.token = token
+        reservation.save()
+
         host = self.request.get_host()
         url = f"http://{host}/reservations/confirm/{token}/"
         send_mail(
@@ -185,7 +187,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[reservation.user.email],
         )
-        return super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class ReservationDeleteView(LoginRequiredMixin, DeleteView):
@@ -198,6 +200,12 @@ class ReservationDeleteView(LoginRequiredMixin, DeleteView):
         return Reservation.objects.filter(user=self.request.user)
 
     def post(self, request, *args, **kwargs):
+        return self.cancel_reservation(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.cancel_reservation(request, *args, **kwargs)
+
+    def cancel_reservation(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.status = Reservation.CANCELED
         self.object.save(update_fields=["status"])

@@ -27,7 +27,6 @@
                         </button>
                         <ul class="dropdown-menu">
                             {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="#">Профиль</a></li>
                             <li><a class="dropdown-item" href="{% url 'reservations:reservation_list' %}">Мои бронирования</a></li>
                             <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
                             {% else %}

@@ -12,12 +12,14 @@ class ReservationForm(forms.Form):
 
     start_time = forms.DateTimeField(
         label="Время начала бронирования",
+        input_formats=["%Y-%m-%dT%H:%M"],
         widget=forms.DateTimeInput(
             attrs={"type": "datetime-local", "class": "form-control"}
         ),
     )
     end_time = forms.DateTimeField(
         label="Время окончания бронирования",
+        input_formats=["%Y-%m-%dT%H:%M"],
         widget=forms.DateTimeInput(
             attrs={"type": "datetime-local", "class": "form-control"}
         ),

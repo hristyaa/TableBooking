@@ -12,6 +12,7 @@ dependencies = [
     "psycopg[binary] (>=3.3.3,<4.0.0)",
     "django-phonenumber-field[phonenumberslite] (>=8.4.0,<9.0.0)",
     "django (==4.2.2)",
+    "coverage (>=7.13.4,<8.0.0)",
 ]
 
 
