@@ -1,0 +1,119 @@
+{% extends 'reservations/base.html' %}
+{% block title %}Бронирование столика{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+<div class="text-center mb-4">
+    <h1 class="h3 mb-3">Подбор свободного столика</h1>
+</div>
+    </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-8">
+            <form class="row" method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-secondary my-1">
+                        Показать свободные столики
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+  {% if tables is not None %}
+
+    {% if tables %}
+      <div class="mb-3">
+        <h2 class="h4 text-center mb-1">Свободные столики</h2>
+        <p class="text-muted text-center mb-0">
+          Период: {{ form_data.start_time|date:'d M Y H:i' }} — {{ form_data.end_time|date:'d M Y H:i' }},
+          гостей: {{ form_data.guests }}
+        </p>
+      </div>
+
+      <h3 class="h5 mt-4 mb-3">Зал</h3>
+      <div class="row g-3">
+        {% for table in tables %}
+          {% if table.location == "hall" %}
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="card-title mb-2">{{ table.name }}</h5>
+                    <span class="badge text-bg-secondary">{{ table.get_location_display }}</span>
+                  </div>
+
+                  {% if table.description %}
+                    <p class="text-muted mb-2">{{ table.description }}</p>
+                  {% endif %}
+
+                  <p class="mb-3"><strong>Вместимость:</strong> {{ table.seats }} чел.</p>
+
+                  <form method="post" action="{% url 'reservations:reservation_create' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="table_id" value="{{ table.id }}">
+                    <input type="hidden" name="start_time" value="{{ form_data.start_time|date:'Y-m-d\\TH:i' }}">
+                    <input type="hidden" name="end_time" value="{{ form_data.end_time|date:'Y-m-d\\TH:i' }}">
+                    <input type="hidden" name="guests" value="{{ form_data.guests }}">
+                    <button class="btn btn-outline-primary w-100" type="submit">
+                      Забронировать
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+
+      <h3 class="h5 mt-4 mb-3">Терраса</h3>
+      <div class="row g-3">
+        {% for table in tables %}
+          {% if table.location == "terrace" %}
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="card-title mb-2">{{ table.name }}</h5>
+                    <span class="badge text-bg-success">{{ table.get_location_display }}</span>
+                  </div>
+
+                  {% if table.description %}
+                    <p class="text-muted mb-2">{{ table.description }}</p>
+                  {% endif %}
+
+                  <p class="mb-3"><strong>Вместимость:</strong> {{ table.seats }} чел.</p>
+
+                  <form method="post" action="{% url 'reservations:reservation_create' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="table_id" value="{{ table.id }}">
+                    <input type="hidden" name="start_time" value="{{ form_data.start_time|date:'Y-m-d\\TH:i' }}">
+                    <input type="hidden" name="end_time" value="{{ form_data.end_time|date:'Y-m-d\\TH:i' }}">
+                    <input type="hidden" name="guests" value="{{ form_data.guests }}">
+                    <button class="btn btn-outline-primary w-100" type="submit">
+                      Забронировать
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+    {% else %}
+      <div class="alert alert-warning">
+        На выбранное время свободных столиков нет.
+      </div>
+    {% endif %}
+
+  {% endif %}
+
+</div>
+{% endblock %}

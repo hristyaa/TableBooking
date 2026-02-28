@@ -47,7 +47,7 @@ class Table(models.Model):
     class Meta:
         verbose_name = "Столик"
         verbose_name_plural = "Столики"
-        ordering = ["name"]
+        ordering = ["id"]
 
     def __str__(self):
         return f"{self.name} ({self.get_location_display()}) -  {str(self.seats)} чел."
@@ -79,6 +79,7 @@ class Reservation(models.Model):
         on_delete=models.CASCADE,
         verbose_name="Столик",
         help_text="Выберите столик",
+        related_name="reservations",
     )
     start_time = models.DateTimeField(
         verbose_name="Время начала бронирования",
