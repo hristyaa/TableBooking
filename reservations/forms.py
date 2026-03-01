@@ -1,8 +1,8 @@
 import datetime
-from django.utils import timezone
-from django.core.exceptions import ValidationError
-from django import forms
 
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 from reservations.models import Reservation
 
@@ -45,6 +45,7 @@ class ReservationForm(forms.Form):
                 raise ValidationError(
                     "Дата и время начала бронирования не может быть в прошлом"
                 )
+
         return start_time
 
     def clean_end_time(self):

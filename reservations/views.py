@@ -4,17 +4,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy, reverse
-from django.views.generic import (
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-    FormView,
-    View,
-)
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (DeleteView, DetailView, FormView, ListView,
+                                  UpdateView, View)
 
 from config import settings
+from content.forms import FeedbackForm
+from content.models import AboutPage, Contacts, HomePage, Services, Staff
 from reservations.forms import ReservationForm, ReservationUpdateForm
 from reservations.models import Reservation, Table
 from reservations.services import ReservationService
@@ -22,8 +18,48 @@ from reservations.services import ReservationService
 # Create your views here.
 
 
-def home(request):
-    return render(request, "reservations/home.html")
+class HomeView(View):
+    """Главная страница с обратной связью"""
+
+    template_name = "reservations/home.html"
+
+    def get(self, request):
+        context = {
+            "home": HomePage.objects.filter(is_active=True).first(),
+            "contacts": Contacts.objects.first(),
+            "services": Services.objects.all(),
+            "form": FeedbackForm(),
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        form = FeedbackForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("reservations:home")
+
+        context = {
+            "home": HomePage.objects.filter(is_active=True).first(),
+            "contacts": Contacts.objects.all(),
+            "services": Services.objects.all(),
+            "form": form,
+        }
+        return render(request, self.template_name, context)
+
+
+class AboutView(View):
+    """Страница 'О ресторане'"""
+
+    template_name = "reservations/about.html"
+
+    def get(self, request):
+        context = {
+            "contacts": Contacts.objects.all(),
+            "about": AboutPage.objects.first(),
+            "staff": Staff.objects.all(),
+        }
+        return render(request, self.template_name, context)
 
 
 class TableListView(ListView):

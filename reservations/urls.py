@@ -1,17 +1,13 @@
+from django.conf.urls.static import static
 from django.urls import path
 
+from config import settings
 from reservations.apps import ReservationsConfig
-from reservations.views import (
-    ReservationCheckView,
-    ReservationCreateView,
-    ReservationDeleteView,
-    ReservationDetailView,
-    ReservationListView,
-    ReservationUpdateView,
-    TableListView,
-    home,
-    reservation_verification,
-)
+from reservations.views import (AboutView, HomeView, ReservationCheckView,
+                                ReservationCreateView, ReservationDeleteView,
+                                ReservationDetailView, ReservationListView,
+                                ReservationUpdateView, TableListView,
+                                reservation_verification)
 
 app_name = ReservationsConfig.name
 
@@ -49,5 +45,9 @@ urlpatterns = [
         ReservationDeleteView.as_view(),
         name="reservation_delete",
     ),
-    path("", home, name="home"),
+    path("", HomeView.as_view(), name="home"),
+    path("about/", AboutView.as_view(), name="about"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

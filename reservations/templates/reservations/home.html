@@ -4,12 +4,9 @@
 {% block content %}
 <main>
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-        <div class="col-md-8 p-lg-5 mx-auto my-5"><h1 class="display-3 fw-bold">Ресторан "Теплый вечер"</h1>
-            <h3 class="fw-normal text-muted">Современный городской ресторан с уютным залом и просторной летней
-                террасой</h3>
+        <div class="col-md-8 p-lg-5 mx-auto my-5"><h1 class="display-3 fw-bold">{{ home.title }}</h1>
+            <h3 class="fw-normal text-muted">{{ home.subtitle }}</h3>
         </div>
-        <!--        <div class="product-device shadow-sm d-none d-md-block"></div>-->
-        <!--        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>-->
         <div class="d-grid gap-2 col-2 mx-auto">
             <p>
                 <a class="btn btn-outline-secondary" href="{% url 'reservations:table_list' %}" role="button">Посмотреть
@@ -26,22 +23,109 @@
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
         <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3"><h2 class="display-5">Уютный зал ресторана</h2>
-                <p class="lead">Внутренний зал выполнен в тёплых тонах с панорамными окнами</p></div>
-
+            <div class="my-3 p-3"><h2 class="display-5">{{ home.hall_title}}</h2>
+                <p class="lead">{{ home.hall_description}}</p></div>
+            {% if home.hall_image %}
             <div class="bg-body shadow-sm mx-auto">
-                <img src="{% static 'images/1.png' %}" class="img-fluid">
+                <img src="{{ home.hall_image.url }}" class="img-fluid">
             </div>
-
+            {% endif %}
         </div>
         <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3"><h2 class="display-5">Терраса</h2>
-                <p class="lead">Терраса окружена зеленью и идеально подходит для летних вечеров</p></div>
+            <div class="my-3 p-3"><h2 class="display-5">{{ home.terrace_title}}</h2>
+                <p class="lead">{{ home.terrace_description}}</p></div>
+            {% if home.terrace_image %}
             <div class="bg-body shadow-sm mx-auto">
-                <img src="{% static 'images/2.png' %}" class="img-fluid">
+                <img src="{{ home.terrace_image.url }}" class="img-fluid">
             </div>
+            {% endif %}
         </div>
     </div>
 
+    <div class="d-md-flex flex-md-equal w-auto my-md-3 ps-md-3">
+        {% if services %}
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
+            <div class="my-3 p-3"><h2 class="display-5">Предоставляемые услуги</h2>
+                {% for service in services %}
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-center" style="text-align: left;">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{ service.name }}</div>
+                            {% if service.description %}
+                            {{ service.description}}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if contacts %}
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
+            <div class="my-3 p-3"><h2 class="display-5">Контакты</h2>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-center" style="text-align: left;">
+                        <div class="ms-2 me-auto"> Наименование ресторана:
+                            <div class="fw-bold">{{ contacts.restaurant_name}}</div>
+                        </div>
+                    </li>
+                    {% if contacts.phone %}
+                    <li class="list-group-item d-flex justify-content-center" style="text-align: left;">
+                        <div class="ms-2 me-auto"> Телефон:
+                            <div class="fw-bold">{{ contacts.phone}}</div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% if contacts.email %}
+                    <li class="list-group-item d-flex justify-content-center" style="text-align: left;">
+                        <div class="ms-2 me-auto"> Адрес электронной почты:
+                            <div class="fw-bold">{{ contacts.email}}</div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% if contacts.address %}
+                    <li class="list-group-item d-flex justify-content-center" style="text-align: left;">
+                        <div class="ms-2 me-auto"> Адрес:
+                            <div class="fw-bold">{{ contacts.address}}</div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% if contacts.work_hours %}
+                    <li class="list-group-item d-flex justify-content-center" style="text-align: left;">
+                        <div class="ms-2 me-auto"> Часы работы:
+                            <div class="fw-bold">{{ contacts.work_hours}}</div>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if form %}
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+        <div class="col-md-8 p-lg-5 mx-auto my-5"><h2 class="display-5">Форма обратной связи</h2>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-8">
+                        <form class="row" method="post" enctype="multipart/form-data">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                </div>
+                                <button type="submit" class="btn btn-secondary my-1">
+                                    Оставить обратную связь
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </main>
 {% endblock %}

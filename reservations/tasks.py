@@ -3,6 +3,7 @@ from django.utils import timezone
 
 from reservations.models import Reservation
 
+
 @shared_task
 def mark_completed_reservations():
     """Перевод в статус 'Завершено' бронирование, окончание бронирование которого прошло"""

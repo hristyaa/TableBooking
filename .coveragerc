@@ -1,0 +1,24 @@
+# .coveragerc
+[run]
+source = .
+branch = True
+omit =
+
+    .venv/*
+    */migrations/*
+    */commands/*
+    manage.py
+    config/__init__.py
+    config/asgi.py
+    config/wsgi.py
+    config/urls.py
+    config/settings.py
+    */apps.py
+    */admin.py
+    */tests.py
+    */tests/*
+    static/*
+    media/*
+    celerybeat-schedule
+    .env
+    .env.example
