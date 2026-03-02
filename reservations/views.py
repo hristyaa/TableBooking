@@ -63,6 +63,7 @@ class AboutView(View):
 
 
 class TableListView(ListView):
+    """Просмотр всех столиков в ресторане"""
     model = Table
     context_object_name = "tables"
 
@@ -79,7 +80,8 @@ class TableListView(ListView):
         return context
 
 
-class ReservationListView(ListView):
+class ReservationListView(LoginRequiredMixin, ListView):
+    """Просмотр списка бронирований"""
     model = Reservation
     context_object_name = "reservations"
     ordering = [
@@ -93,11 +95,13 @@ class ReservationListView(ListView):
 
 
 class ReservationDetailView(LoginRequiredMixin, DetailView):
+    """детальный просмотр бронирвоания"""
     model = Reservation
     context_object_name = "reservation"
 
 
 class ReservationCheckView(LoginRequiredMixin, FormView):
+    """Просмотр доступнкости столиков по времени бронирования и кол-ву гостей"""
     form_class = ReservationForm
     template_name = "reservations/reservation_check.html"
 
@@ -117,34 +121,8 @@ class ReservationCheckView(LoginRequiredMixin, FormView):
         )
 
 
-# class ReservationCreateView(LoginRequiredMixin, CreateView):
-#     model = Reservation
-#     form_class = ReservationForm
-#     success_url = reverse_lazy("reservations:reservation_list")
-#
-#     def form_valid(self, form):
-#         """
-#         Посетитель = создатель бронирования(авторизованный пользователь)
-#         Подтверждение бронирования через email
-#         """
-#         reservation = form.save(commit=False)
-#         user = self.request.user
-#         reservation.user = user
-#         token = secrets.token_hex(16)
-#         reservation.token = token
-#         reservation.save()
-#         host = self.request.get_host()
-#         url = f"http://{host}/reservations/confirm/{token}/"
-#         send_mail(
-#             subject="Подтверждение бронирования",
-#             message=f"Здравствуйте, перейдите по ссылки для подтверждения бронирования {url}",
-#             from_email=settings.EMAIL_HOST_USER,
-#             recipient_list=[user.email],
-#         )
-#         return super().form_valid(form)
-
-
 class ReservationCreateView(LoginRequiredMixin, View):
+    """Создание бронирования + отправка подтверждения по email """
     def post(self, request, *args, **kwargs):
         form = ReservationForm(request.POST)
 
