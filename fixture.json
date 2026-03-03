@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$600000$u2GIeD7wsqwLbr9cYbtShd$0g84k1yodgf43rxStCzLlADt2tNr4Wa5lPfw4VtC5QI=",
-        "last_login": "2026-03-02T12:39:14.419Z",
+        "last_login": "2026-03-03T14:20:08.147Z",
         "is_superuser": true,
         "last_name": "",
         "is_staff": true,
@@ -22,7 +22,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$600000$6D1p8BXhac9bT8CgZrRXn4$e1ZF1HstjB/sJ0fAE4DEmQWVhLbjg8PxAkyEwEBYmJY=",
-        "last_login": "2026-03-01T13:31:32.955Z",
+        "last_login": "2026-03-03T13:15:08.117Z",
         "is_superuser": false,
         "last_name": "",
         "is_staff": false,
@@ -435,7 +435,7 @@
         "phone": "+79991515200",
         "email": "warm_evening@mail.ru",
         "address": "г. Чита, ул. Теплых вечеров, д. 15",
-        "work_hours": "Круглосуточно"
+        "work_hours": "c 12-00 до 00-00 ежедневно"
     }
 },
 {
