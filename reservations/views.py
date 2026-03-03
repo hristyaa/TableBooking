@@ -15,7 +15,6 @@ from reservations.forms import ReservationForm, ReservationUpdateForm
 from reservations.models import Reservation, Table
 from reservations.services import ReservationService
 
-
 # Create your views here.
 
 
@@ -217,8 +216,10 @@ class ReservationDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("reservations:reservation_list")
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user,
-                                          status__in=[Reservation.CREATED, Reservation.CONFIRMED])
+        return Reservation.objects.filter(
+            user=self.request.user,
+            status__in=[Reservation.CREATED, Reservation.CONFIRMED],
+        )
 
     def post(self, request, *args, **kwargs):
         return self.cancel_reservation(request, *args, **kwargs)

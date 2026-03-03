@@ -1,8 +1,7 @@
-from datetime import datetime, timedelta, time
+from datetime import datetime, time, timedelta
 
 from django.test import TestCase
 from django.urls import reverse
-from django.utils import timezone
 
 from content.forms import FeedbackForm
 from content.models import (AboutPage, Contacts, HomePage, Services, Staff,
@@ -33,7 +32,7 @@ class ReservationTest(TestCase):
             seats=4,
         )
         date = datetime.now() + timedelta(days=1)
-        new_time = time(12,10,0)
+        new_time = time(12, 10, 0)
         start_time = datetime.combine(date.date(), new_time)
         end_time = start_time + timedelta(hours=1)
 
@@ -144,17 +143,18 @@ class ReservationTest(TestCase):
         self.client.login(email=self.user.email, password="1234")
         url = reverse("reservations:reservation_update", args=[self.reservation.id])
         date = datetime.now() + timedelta(days=1)
-        new_time = time(15, 30, 0)
+        new_time = time(12, 10, 0)
         start = datetime.combine(date.date(), new_time)
         end = start + timedelta(hours=2)
 
         data = {
             "table": self.table_2.id,
-            "start_time": start.strftime('%Y.%m.%d %H:%M:%S'),
-            "end_time": end.strftime('%Y.%m.%d %H:%M:%S'),
+            "start_time": start.strftime("%Y-%m-%dT%H:%M"),
+            "end_time": end.strftime("%Y-%m-%dT%H:%M"),
             "guests": 2,
         }
         response = self.client.post(url, data)
+
         self.assertEqual(response.status_code, 302)
         self.reservation.refresh_from_db()
         self.assertEqual(self.reservation.table.id, self.table_2.id)
@@ -167,8 +167,8 @@ class ReservationTest(TestCase):
         self.assertEqual(response_get.status_code, 404)
         data = {
             "table": self.table.id,
-            "start_time": start.strftime('%Y.%m.%d %H:%M:%S'),
-            "end_time": end.strftime('%Y.%m.%d %H:%M:%S'),
+            "start_time": start.strftime("%Y-%m-%dT%H:%M"),
+            "end_time": end.strftime("%Y-%m-%dT%H:%M"),
             "guests": 4,
         }
         response_get = self.client.get(url)
