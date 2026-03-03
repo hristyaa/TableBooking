@@ -46,6 +46,10 @@ class ReservationForm(forms.Form):
                     "Дата и время начала бронирования не может быть в прошлом"
                 )
 
+            if datetime.time(hour=0, minute=0, second=0) < start_time.time() < datetime.time(hour=12, minute=0, second=0):
+                raise ValidationError(
+                    "Ресторан работает с 12-00 до 00-00"
+                )
         return start_time
 
     def clean_end_time(self):
@@ -60,6 +64,10 @@ class ReservationForm(forms.Form):
             if end_time < time_now:
                 raise ValidationError(
                     "Дата и время окончания бронирования не может быть в прошлом"
+                )
+            if datetime.time(hour=0, minute=0, second=0) < end_time.time() < datetime.time(hour=12, minute=0, second=0):
+                raise ValidationError(
+                    "Ресторан работает с 12-00 до 00-00"
                 )
         return end_time
 
@@ -168,7 +176,7 @@ class ReservationUpdateForm(forms.ModelForm):
             if guests > table.seats:
                 self.add_error(
                     "guests",
-                    "Выбранный стол не вмещает {guests} чел. Выберите другой стол или укажите иное количество гостей",
+                    f"Выбранный стол не вмещает {guests} чел. Выберите другой стол или укажите иное количество гостей",
                 )
                 return cleaned_data
 

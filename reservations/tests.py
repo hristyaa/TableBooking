@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 
 from django.test import TestCase
 from django.urls import reverse
@@ -32,8 +32,8 @@ class ReservationTest(TestCase):
             name="test table 2",
             seats=4,
         )
-        start_time = timezone.now() + datetime.timedelta(hours=2)
-        end_time = start_time + datetime.timedelta(hours=1)
+        start_time = datetime.strptime('2026.03.03 12:10:00', '%Y.%m.%d %H:%M:%S')
+        end_time = start_time + timedelta(hours=1)
 
         self.reservation = Reservation.objects.create(
             user=self.user,
@@ -56,8 +56,8 @@ class ReservationTest(TestCase):
     def test_reservation_form_validation(self):
         """Проверка валидации формы ReservationForm"""
         self.client.login(email=self.user.email, password="1234")
-        start = timezone.now() + datetime.timedelta(hours=5)
-        end = start + datetime.timedelta(hours=2)
+        start = datetime.strptime('2026.03.03 12:10:00', '%Y.%m.%d %H:%M:%S')
+        end = start + timedelta(hours=2)
         data_invalid = {
             "table_id": self.table_2.id,
             "start_time": start,
@@ -89,8 +89,8 @@ class ReservationTest(TestCase):
         self.client.login(email=self.user_2.email, password="1234")
 
         url = reverse("reservations:reservation_create")
-        start = timezone.now() + datetime.timedelta(hours=5)
-        end = start + datetime.timedelta(hours=2)
+        start = datetime.strptime('2026.03.03 14:10:00', '%Y.%m.%d %H:%M:%S')
+        end = start + timedelta(hours=2)
 
         data = {
             "table_id": self.table_2.id,
@@ -137,12 +137,13 @@ class ReservationTest(TestCase):
         """Тестирование изменения бронирования"""
         self.client.login(email=self.user.email, password="1234")
         url = reverse("reservations:reservation_update", args=[self.reservation.id])
-        start = timezone.now() + datetime.timedelta(days=2)  # +2 дня
-        end = start + datetime.timedelta(hours=2)
+        start = datetime.strptime('2026.03.03 12:10:00', '%Y.%m.%d %H:%M:%S')
+        end = start + timedelta(hours=2)
+
         data = {
             "table": self.table_2.id,
-            "start_time": start.strftime("%Y-%m-%dT%H:%M"),
-            "end_time": end.strftime("%Y-%m-%dT%H:%M"),
+            "start_time": start.strftime('%Y.%m.%d %H:%M:%S'),
+            "end_time": end.strftime('%Y.%m.%d %H:%M:%S'),
             "guests": 2,
         }
         response = self.client.post(url, data)
@@ -158,8 +159,8 @@ class ReservationTest(TestCase):
         self.assertEqual(response_get.status_code, 404)
         data = {
             "table": self.table.id,
-            "start_time": start.strftime("%Y-%m-%dT%H:%M"),
-            "end_time": end.strftime("%Y-%m-%dT%H:%M"),
+            "start_time": start.strftime('%Y.%m.%d %H:%M:%S'),
+            "end_time": end.strftime('%Y.%m.%d %H:%M:%S'),
             "guests": 4,
         }
         response_get = self.client.get(url)
