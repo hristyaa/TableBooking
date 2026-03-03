@@ -15,6 +15,7 @@ from reservations.forms import ReservationForm, ReservationUpdateForm
 from reservations.models import Reservation, Table
 from reservations.services import ReservationService
 
+
 # Create your views here.
 
 
@@ -41,7 +42,7 @@ class HomeView(View):
 
         context = {
             "home": HomePage.objects.filter(is_active=True).first(),
-            "contacts": Contacts.objects.all(),
+            "contacts": Contacts.objects.first(),
             "services": Services.objects.all(),
             "form": form,
         }
@@ -55,7 +56,7 @@ class AboutView(View):
 
     def get(self, request):
         context = {
-            "contacts": Contacts.objects.all(),
+            "contacts": Contacts.objects.first(),
             "about": AboutPage.objects.first(),
             "staff": Staff.objects.all(),
         }
@@ -97,14 +98,14 @@ class ReservationListView(LoginRequiredMixin, ListView):
 
 
 class ReservationDetailView(LoginRequiredMixin, DetailView):
-    """детальный просмотр бронирвоания"""
+    """Детальный просмотр бронирования"""
 
     model = Reservation
     context_object_name = "reservation"
 
 
 class ReservationCheckView(LoginRequiredMixin, FormView):
-    """Просмотр доступнкости столиков по времени бронирования и кол-ву гостей"""
+    """Просмотр доступности столиков по времени бронирования и кол-ву гостей"""
 
     form_class = ReservationForm
     template_name = "reservations/reservation_check.html"
@@ -216,7 +217,8 @@ class ReservationDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("reservations:reservation_list")
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return Reservation.objects.filter(user=self.request.user,
+                                          status__in=[Reservation.CREATED, Reservation.CONFIRMED])
 
     def post(self, request, *args, **kwargs):
         return self.cancel_reservation(request, *args, **kwargs)
