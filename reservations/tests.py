@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 
 from django.test import TestCase
 from django.urls import reverse
@@ -32,7 +32,9 @@ class ReservationTest(TestCase):
             name="test table 2",
             seats=4,
         )
-        start_time = datetime.strptime('2026.03.03 12:10:00', '%Y.%m.%d %H:%M:%S')
+        date = datetime.now() + timedelta(days=1)
+        new_time = time(12,10,0)
+        start_time = datetime.combine(date.date(), new_time)
         end_time = start_time + timedelta(hours=1)
 
         self.reservation = Reservation.objects.create(
@@ -56,7 +58,9 @@ class ReservationTest(TestCase):
     def test_reservation_form_validation(self):
         """Проверка валидации формы ReservationForm"""
         self.client.login(email=self.user.email, password="1234")
-        start = datetime.strptime('2026.03.03 12:10:00', '%Y.%m.%d %H:%M:%S')
+        date = datetime.now() + timedelta(days=1)
+        new_time = time(15, 30, 0)
+        start = datetime.combine(date.date(), new_time)
         end = start + timedelta(hours=2)
         data_invalid = {
             "table_id": self.table_2.id,
@@ -64,13 +68,13 @@ class ReservationTest(TestCase):
             "end_time": end,
             "guests": 10,
         }
-
         form = ReservationForm(data=data_invalid)
         self.assertFalse(form.is_valid())
         self.assertIn("guests", form.errors)
         self.assertIn(
             "Максимальное количество гостей за столом - 6", form.errors["guests"]
         )
+
         data = {
             "table_id": self.table_2.id,
             "start_time": start,
@@ -89,7 +93,9 @@ class ReservationTest(TestCase):
         self.client.login(email=self.user_2.email, password="1234")
 
         url = reverse("reservations:reservation_create")
-        start = datetime.strptime('2026.03.03 14:10:00', '%Y.%m.%d %H:%M:%S')
+        date = datetime.now() + timedelta(days=1)
+        new_time = time(15, 30, 0)
+        start = datetime.combine(date.date(), new_time)
         end = start + timedelta(hours=2)
 
         data = {
@@ -137,7 +143,9 @@ class ReservationTest(TestCase):
         """Тестирование изменения бронирования"""
         self.client.login(email=self.user.email, password="1234")
         url = reverse("reservations:reservation_update", args=[self.reservation.id])
-        start = datetime.strptime('2026.03.03 12:10:00', '%Y.%m.%d %H:%M:%S')
+        date = datetime.now() + timedelta(days=1)
+        new_time = time(15, 30, 0)
+        start = datetime.combine(date.date(), new_time)
         end = start + timedelta(hours=2)
 
         data = {
