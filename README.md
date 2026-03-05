@@ -149,7 +149,7 @@ docker compose exec backend python manage.py loaddata fixture.json
 docker compose down
 ```
 
-После запуска приложение будет доступно по адресу: `http://127.0.0.1:8080/`
+После запуска приложение будет доступно по адресу: `http://localhost/`
 
 ## Тестирование:
 
