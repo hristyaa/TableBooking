@@ -1,0 +1,608 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$u2GIeD7wsqwLbr9cYbtShd$0g84k1yodgf43rxStCzLlADt2tNr4Wa5lPfw4VtC5QI=",
+        "last_login": "2026-03-03T14:20:08.147Z",
+        "is_superuser": true,
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-02-22T06:45:45.514Z",
+        "email": "admin@mail.ru",
+        "first_name": "",
+        "phone": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$6D1p8BXhac9bT8CgZrRXn4$e1ZF1HstjB/sJ0fAE4DEmQWVhLbjg8PxAkyEwEBYmJY=",
+        "last_login": "2026-03-03T13:15:08.117Z",
+        "is_superuser": false,
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-22T12:28:32.573Z",
+        "email": "xelbr99@mail.ru",
+        "first_name": "Христина",
+        "phone": "+79144820154",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$DMGDMAJhFF6XyuGZNC1kLC$9hbnEQxcukQqdIgYPNPoeGLjAJ/qB+1Ssm4spTMayjA=",
+        "last_login": "2026-02-22T12:37:38.024Z",
+        "is_superuser": false,
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-22T12:37:23.421Z",
+        "email": "test@mail.ru",
+        "first_name": "Test",
+        "phone": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$C761yTt6qpsJbCciWm0Z0i$tDUMEkmQVqd7X1U2anU5XJpPWProFf5SrOsoNlCM8cg=",
+        "last_login": "2026-02-23T06:19:44.909Z",
+        "is_superuser": false,
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-23T06:19:21.611Z",
+        "email": "sveta.bezik@mail.ru",
+        "first_name": "Светлана",
+        "phone": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$FHMlVkVRY3PfP4IL68TVyT$DZMOSfXEsMVT1w6PvdSGEsRYjKii5cyYYEfDeric8ZA=",
+        "last_login": "2026-02-28T16:51:09.627Z",
+        "is_superuser": false,
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-28T16:50:53.567Z",
+        "email": "shu-hristik@yandex.ru",
+        "first_name": "Федор",
+        "phone": "+79144820154",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 1,
+    "fields": {
+        "name": "Стол № 1",
+        "description": "Столик у входа в ресторан",
+        "location": "hall",
+        "seats": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 2,
+    "fields": {
+        "name": "Стол № 2",
+        "description": "Столик у входа в ресторан",
+        "location": "hall",
+        "seats": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 3,
+    "fields": {
+        "name": "Стол № 3",
+        "description": "У окна",
+        "location": "hall",
+        "seats": 4,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 4,
+    "fields": {
+        "name": "Стол № 4",
+        "description": "У окна",
+        "location": "hall",
+        "seats": 6,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 5,
+    "fields": {
+        "name": "Стол № 5",
+        "description": "В центре",
+        "location": "hall",
+        "seats": 6,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 6,
+    "fields": {
+        "name": "Стол № 6",
+        "description": "В центре",
+        "location": "hall",
+        "seats": 4,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 7,
+    "fields": {
+        "name": "Стол № 7",
+        "description": "",
+        "location": "terrace",
+        "seats": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 8,
+    "fields": {
+        "name": "Стол № 8",
+        "description": "",
+        "location": "terrace",
+        "seats": 2,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 9,
+    "fields": {
+        "name": "Стол № 9",
+        "description": "",
+        "location": "terrace",
+        "seats": 4,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 10,
+    "fields": {
+        "name": "Стол № 10",
+        "description": "",
+        "location": "terrace",
+        "seats": 6,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 11,
+    "fields": {
+        "name": "Стол № 11",
+        "description": "",
+        "location": "terrace",
+        "seats": 6,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 12,
+    "fields": {
+        "name": "Стол № 12",
+        "description": "",
+        "location": "terrace",
+        "seats": 4,
+        "is_active": true
+    }
+},
+{
+    "model": "reservations.table",
+    "pk": 13,
+    "fields": {
+        "name": "Cтол test",
+        "description": "test",
+        "location": "hall",
+        "seats": 4,
+        "is_active": false
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "table": 10,
+        "start_time": "2026-02-23T16:11:00Z",
+        "end_time": "2026-02-23T18:11:00Z",
+        "guests": 5,
+        "status": "completed",
+        "created_at": "2026-02-22T13:14:36.327Z",
+        "updated_at": "2026-02-22T13:14:38.014Z",
+        "token": "f35a0478b024d08543c79362a896d7f5"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 3,
+    "fields": {
+        "user": 2,
+        "table": 13,
+        "start_time": "2026-02-22T23:17:00Z",
+        "end_time": "2026-02-22T01:17:00Z",
+        "guests": 3,
+        "status": "completed",
+        "created_at": "2026-02-22T13:18:03.078Z",
+        "updated_at": "2026-02-22T13:18:04.660Z",
+        "token": "a8261c1be322cfd5903abe1ab2b66d63"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 4,
+    "fields": {
+        "user": 2,
+        "table": 1,
+        "start_time": "2026-02-23T04:29:00Z",
+        "end_time": "2026-02-23T04:29:00Z",
+        "guests": 2,
+        "status": "completed",
+        "created_at": "2026-02-22T13:29:48.662Z",
+        "updated_at": "2026-02-22T13:29:50.178Z",
+        "token": "701f665a9a8f87a2f0f52847d9f741ef"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 6,
+    "fields": {
+        "user": 2,
+        "table": 11,
+        "start_time": "2026-02-26T18:46:00Z",
+        "end_time": "2026-02-26T01:46:00Z",
+        "guests": 5,
+        "status": "completed",
+        "created_at": "2026-02-22T13:46:42.179Z",
+        "updated_at": "2026-02-22T13:47:01.472Z",
+        "token": "61503cd96f63154222dfd5ff19848a5e"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 7,
+    "fields": {
+        "user": 4,
+        "table": 3,
+        "start_time": "2026-02-23T20:20:00Z",
+        "end_time": "2026-02-23T22:20:00Z",
+        "guests": 4,
+        "status": "completed",
+        "created_at": "2026-02-23T06:20:38.319Z",
+        "updated_at": "2026-02-23T06:20:39.981Z",
+        "token": "99417ee1f507d13abe4bb4c602b46364"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 9,
+    "fields": {
+        "user": 1,
+        "table": 1,
+        "start_time": "2026-02-28T15:55:00Z",
+        "end_time": "2026-02-28T16:55:00Z",
+        "guests": 2,
+        "status": "completed",
+        "created_at": "2026-02-28T04:56:09.679Z",
+        "updated_at": "2026-02-28T04:56:09.679Z",
+        "token": "c3655b1684e698e27a574b84af42872f"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 10,
+    "fields": {
+        "user": 1,
+        "table": 6,
+        "start_time": "2026-02-28T16:30:00Z",
+        "end_time": "2026-02-28T19:30:00Z",
+        "guests": 3,
+        "status": "completed",
+        "created_at": "2026-02-28T05:34:17.109Z",
+        "updated_at": "2026-02-28T05:34:17.109Z",
+        "token": "506c3a903c3ae1dcd18dafb8ea60dade"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 11,
+    "fields": {
+        "user": 2,
+        "table": 3,
+        "start_time": "2026-02-28T19:35:00Z",
+        "end_time": "2026-02-28T20:40:00Z",
+        "guests": 3,
+        "status": "completed",
+        "created_at": "2026-02-28T05:35:22.675Z",
+        "updated_at": "2026-02-28T05:36:09.871Z",
+        "token": null
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 12,
+    "fields": {
+        "user": 2,
+        "table": 10,
+        "start_time": "2026-02-28T22:42:00Z",
+        "end_time": "2026-02-28T23:42:00Z",
+        "guests": 5,
+        "status": "completed",
+        "created_at": "2026-02-28T05:48:41.513Z",
+        "updated_at": "2026-02-28T12:06:33.643Z",
+        "token": null
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 15,
+    "fields": {
+        "user": 2,
+        "table": 5,
+        "start_time": "2026-03-01T20:36:00Z",
+        "end_time": "2026-03-01T21:36:00Z",
+        "guests": 5,
+        "status": "canceled",
+        "created_at": "2026-02-28T09:36:39.083Z",
+        "updated_at": "2026-02-28T09:36:39.083Z",
+        "token": "87c7e2ed04b6d5483e2664a1b26601a3"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 16,
+    "fields": {
+        "user": 2,
+        "table": 5,
+        "start_time": "2026-03-01T15:42:00Z",
+        "end_time": "2026-03-01T18:43:00Z",
+        "guests": 5,
+        "status": "canceled",
+        "created_at": "2026-02-28T09:43:20.371Z",
+        "updated_at": "2026-02-28T09:45:07.289Z",
+        "token": "f0e7b9fe5668f0e64bb54f97a571acfe"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 17,
+    "fields": {
+        "user": 2,
+        "table": 4,
+        "start_time": "2026-03-01T15:31:00Z",
+        "end_time": "2026-03-01T19:31:00Z",
+        "guests": 5,
+        "status": "confirmed",
+        "created_at": "2026-03-01T13:32:14.610Z",
+        "updated_at": "2026-03-01T13:32:38.245Z",
+        "token": null
+    }
+},
+{
+    "model": "content.homepage",
+    "pk": 1,
+    "fields": {
+        "title": "Ресторан \"Теплый вечер\"",
+        "subtitle": "Современный городской ресторан с уютным залом и просторной летней террасой",
+        "hall_title": "Уютный зал ресторана",
+        "hall_description": "Внутренний зал выполнен в тёплых тонах с панорамными окнами",
+        "hall_image": "home/1_5heWWDB.png",
+        "terrace_title": "Терраса",
+        "terrace_description": "Терраса окружена зеленью и идеально подходит для летних вечеров",
+        "terrace_image": "home/2_8wmPq5h.png",
+        "is_active": true
+    }
+},
+{
+    "model": "content.contacts",
+    "pk": 1,
+    "fields": {
+        "restaurant_name": "Теплый вечер",
+        "phone": "+79991515200",
+        "email": "warm_evening@mail.ru",
+        "address": "г. Чита, ул. Теплых вечеров, д. 15",
+        "work_hours": "c 12-00 до 00-00 ежедневно"
+    }
+},
+{
+    "model": "content.services",
+    "pk": 1,
+    "fields": {
+        "name": "Бронирование столиков",
+        "description": "Онлайн-бронирование на сайте и по телефону. Возможность выбрать любимый столик: у окна в зале или на террасе."
+    }
+},
+{
+    "model": "content.services",
+    "pk": 2,
+    "fields": {
+        "name": "Еда на вынос",
+        "description": "Заберите заказ самостоятельно - скидка 10 % (заказы принимаем по телефону)"
+    }
+},
+{
+    "model": "content.services",
+    "pk": 3,
+    "fields": {
+        "name": "Доставка еды",
+        "description": "Доставка еды от 60 минут (Заказы принимаем по телефону)"
+    }
+},
+{
+    "model": "content.services",
+    "pk": 4,
+    "fields": {
+        "name": "Бизнес-ланчи",
+        "description": "Комплексные обеды в будни с 12:00 до 16:00."
+    }
+},
+{
+    "model": "content.feedback",
+    "pk": 1,
+    "fields": {
+        "name": "Христина",
+        "email": "xelbr99@mail.ru",
+        "message": "Все супер!",
+        "created_at": "2026-02-28T15:42:44.178Z"
+    }
+},
+{
+    "model": "content.feedback",
+    "pk": 2,
+    "fields": {
+        "name": "Христина",
+        "email": "xelbr99@mail.ru",
+        "message": "Все супер!",
+        "created_at": "2026-02-28T15:43:39.753Z"
+    }
+},
+{
+    "model": "content.feedback",
+    "pk": 3,
+    "fields": {
+        "name": "Антон",
+        "email": "shu-hristik@yandex.ru",
+        "message": "вцвцвцв",
+        "created_at": "2026-03-01T13:08:46.283Z"
+    }
+},
+{
+    "model": "content.values",
+    "pk": 1,
+    "fields": {
+        "name": "Домашнее тепло",
+        "description": "Мы создаём атмосферу, в которой каждый чувствует себя желанным гостем, а не просто номером заказа."
+    }
+},
+{
+    "model": "content.values",
+    "pk": 2,
+    "fields": {
+        "name": "Искренность во всём",
+        "description": "Честные цены, настоящие продукты, открытая кухня, где видно процесс приготовления, и никакого пафоса. Мы такие, какие есть — тёплые и настоящие."
+    }
+},
+{
+    "model": "content.values",
+    "pk": 3,
+    "fields": {
+        "name": "Внимание к деталям",
+        "description": "Свежие цветы на каждом столике, правильная температура подачи блюд, мягкий свет, удобные стулья, быстрый Wi-Fi — мы продумываем всё, чтобы гость ни о чём не беспокоился."
+    }
+},
+{
+    "model": "content.values",
+    "pk": 4,
+    "fields": {
+        "name": "Единство с природой",
+        "description": "На террасе мы создаём зелёный уголок, используем сезонные продукты от местных фермеров и заботимся об экологии: сортируем отходы, минимизируем пластик."
+    }
+},
+{
+    "model": "content.values",
+    "pk": 5,
+    "fields": {
+        "name": "Команда — одна семья",
+        "description": "Наши сотрудники не просто работают — они живут рестораном. Мы учимся, растем и поддерживаем друг друга. Счастливый персонал = счастливые гости."
+    }
+},
+{
+    "model": "content.aboutpage",
+    "pk": 2,
+    "fields": {
+        "history": "Всё началось с семейных обедов на маленькой кухне. Сегодня «Тёплый вечер» — это уютный зал с панорамными окнами и зелёная терраса, где можно спрятаться от городской суеты. Мы объединяем семейные традиции и современную кухню, чтобы каждый ваш вечер стал особенным.",
+        "mission": "Создавать тёплые воспоминания за каждым столом.",
+        "values": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "content.staff",
+    "pk": 1,
+    "fields": {
+        "name": "Алексей",
+        "role": "шеф-повар и основатель ресторана",
+        "description": "«Для меня идеальный гость — тот, кто уходит сытым не только телом, но и душой».",
+        "photo": "team/shef.png"
+    }
+},
+{
+    "model": "content.staff",
+    "pk": 2,
+    "fields": {
+        "name": "Елена",
+        "role": "администратор",
+        "description": "«Я люблю свою работу за то, что каждый день — живой. Сегодня романтический ужин, завтра — шумная компания друзей, послезавтра — деловые переговоры. И ко всем нужен свой ключик».",
+        "photo": "team/admin.png"
+    }
+},
+{
+    "model": "content.staff",
+    "pk": 3,
+    "fields": {
+        "name": "Дмитрий",
+        "role": "официант",
+        "description": "Гости ценят его за лёгкость, искренний юмор и умение быть ненавязчиво внимательным. Он не будет отвлекать, если вы хотите побыть вдвоём, но вовремя заметит пустой бокал или вопрос в глазах.",
+        "photo": "team/oficiant.png"
+    }
+},
+{
+    "model": "content.staff",
+    "pk": 4,
+    "fields": {
+        "name": "Ирина",
+        "role": "шеф-кондитер",
+        "description": "«Сладкое — это маленький праздник. Я люблю придумывать новые десерты, экспериментировать со вкусами, но всегда оставляю в них что-то очень родное, понятное, тёплое».",
+        "photo": "team/conditer.png"
+    }
+},
+{
+    "model": "content.staff",
+    "pk": 5,
+    "fields": {
+        "name": "Артем",
+        "role": "бармен",
+        "description": "«Бар — это место, где начинаются и заканчиваются вечера. Я люблю наблюдать, как после первого глотка у гостя меняется настроение, как расслабляются плечи, появляется улыбка. Это и есть моё главное удовольствие».",
+        "photo": "team/barmen.png"
+    }
+}
+]

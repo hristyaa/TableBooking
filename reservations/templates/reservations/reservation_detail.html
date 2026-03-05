@@ -1,0 +1,69 @@
+{% extends 'reservations/base.html' %}
+{% block title %}Бронирование столика{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3">Просмотр бронирования</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-body text-center w-auto">
+                    <div class="d-flex justify-content-center align-items-start">
+                        <h5 class="card-title mb-2">Бронирование на {{ reservation.start_time|date:"d M Y" }}</h5>
+                    </div>
+                    <p class="card-text text-start">{{ reservation.table }}</p>
+                    <p class="card-text text-start">Начало: {{ reservation.start_time|date:"d M Y H:i" }}</p>
+                    <p class="card-text text-start">Окончание: {{ reservation.end_time|date:"d M Y H:i" }}</p>
+                    <p class="card-text text-start">Количество гостей: {{ reservation.guests}} чел.</p>
+                    <p class="card-text text-start">На имя: {{ reservation.user.first_name }}</p>
+
+                    <span class="badge
+                    {% if reservation.status == 'confirmed' %} text-bg-success
+                    {% elif reservation.status == 'created' %} text-bg-secondary
+                    {% elif reservation.status == 'canceled' %} text-bg-danger
+                    {% elif reservation.status == 'completed' %} text-bg-dark
+                    {% endif %} mb-2">{{ reservation.get_status_display }}</span>
+                    {% if reservation.status == 'created' %}
+                    <p class="text-muted mb-2">Ожидает подтверждение по email</p>
+                    {% endif %}
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="btn-group-vertical">
+                            <a class="btn btn-outline-secondary " href="{% url 'reservations:reservation_list' %}"
+                               role="button">Вернуться
+                                к списку бронирований</a>
+                            {% if reservation.status == 'created' or reservation.status == 'confirmed' %}
+                            <div class="btn-group" role="group">
+
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Редактировать
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                           href="{% url 'reservations:reservation_update' reservation.pk %}"
+                                           role="button">Изменить</a></li>
+                                    <li><a class="dropdown-item"
+                                           href="{% url 'reservations:reservation_delete' reservation.pk %}"
+                                           role="button">Отменить</a></li>
+                                </ul>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="text-muted">
+                        <small class="text-body-secondary d-block">Cоздано: {{ reservation.created_at|date:"d M Y H:i" }}</small>
+                        <small class="text-body-secondary d-block">Изменено: {{ reservation.updated_at|date:"d M Y H:i" }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'reservations/base.html' %}
+{% load static %}
+{% block title %}О ресторане{% endblock %}
+{% block content %}
+
+<main>
+       <div class="position-relative overflow-hidden text-center bg-body-tertiary">
+        <div class="col-md-8 p-lg-5 mx-auto">
+            <h2 class="display-5">О ресторане "{{ contacts.restaurant_name }}" </h2>
+        </div>
+       </div>
+    <div class="d-md-flex flex-md-equal w-auto my-md-3 ps-md-3">
+        {% if about.history %}
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
+            <div class="my-3 p-3"><h2 class="display-5">История ресторана</h2>
+                <div class="text-start" style="max-width: 800px; margin: 0 auto;">
+                    <p class="mb-3 text-center">{{ about.history }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if about.mission or about.values.all %}
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center">
+            {% if about.mission %}
+            <div class="my-3 p-3"><h2 class="display-5">Наша миссия</h2>
+                <div class="text-start" style="max-width: 800px; margin: 0 auto;">
+                    <p class="mb-3 text-center">{{ about.mission }}</p>
+                </div>
+            </div>
+            {% endif %}
+            {% if about.values.all %}
+            <div class="my-3 p-3"><h2 class="display-5">Наши ценности</h2>
+                {% for value in about.values.all %}
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-center" style="text-align: left;">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{ value.name }}</div>
+                            {% if value.description %}
+                            {{ value.description}}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    {% if staff %}
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+        <div class="col-md-8 p-lg-5 mx-auto my-5">
+            <h2 class="display-5">Наша команда</h2>
+             <p class="lead text-muted">Профессионалы, которые создают уют и заботятся о вас</p>
+        </div>
+        {% for st in staff %}
+
+        <div class="card mb-3" >
+            <div class="row g-0">
+                {% if st.photo %}
+                <div class="col-md-2">
+                    <img src="{{ st.photo.url }}" class="img-fluid rounded-start">
+                </div>
+                {% endif %}
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ st.name }}</h5>
+                        <h6 class="card-title">{{ st.role }}</h6>
+                        {% if st.description %}
+                        <p class="card-text">{{ st.description }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+</main>
+{% endblock %}

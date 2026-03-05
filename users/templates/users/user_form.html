@@ -1,0 +1,28 @@
+{% extends 'reservations/base.html' %}
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+<div class="text-center mb-4">
+    <h1 class="h3 mb-3">Регистрация</h1>
+</div>
+    </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-8">
+            <form class="row" method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-secondary my-1">
+                        Зарегистрироваться
+                    </button>
+                    <a class="btn btn-outline-secondary my-2" href="{% url 'users:login' %}" role="button"> Я уже зарегистрирован </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
