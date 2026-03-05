@@ -27,7 +27,13 @@ services:
 
     backend:
       build: .
-      command: bash -c "python manage.py migrate && python manage.py loaddata fixture.json && python manage.py runserver 0.0.0.0:8000"
+      command:
+        bash -c "
+        python manage.py migrate && 
+        python manage.py collectstatic --noinput &&
+        python manage.py loaddata fixture.json && 
+        python manage.py runserver 0.0.0.0:8000
+        "
       env_file:
         - .env
       environment:
@@ -45,14 +51,6 @@ services:
         - .:/app
         - django_static:/app/staticfiles/
         - ./media:/app/media/
-
-    static_collector:
-      build: .
-      command: bash -c "python manage.py collectstatic -c --no-input"
-      env_file:
-        - .env
-      volumes:
-        - django_static:/app/staticfiles/
 
     celery:
       build: .
