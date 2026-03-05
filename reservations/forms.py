@@ -41,16 +41,14 @@ class ReservationForm(forms.Form):
             raise ValidationError("Укажите дату и время начала бронирования")
 
         if start_time:
+            work_end = datetime.time(hour=0, minute=0, second=0)
+            work_start = datetime.time(hour=12, minute=0, second=0)
             if start_time < time_now:
                 raise ValidationError(
                     "Дата и время начала бронирования не может быть в прошлом"
                 )
 
-            if (
-                datetime.time(hour=0, minute=0, second=0)
-                < start_time.time()
-                < datetime.time(hour=12, minute=0, second=0)
-            ):
+            if work_end < start_time.time() < work_start:
                 raise ValidationError("Ресторан работает с 12-00 до 00-00")
         return start_time
 
@@ -63,15 +61,13 @@ class ReservationForm(forms.Form):
             raise ValidationError("Укажите дату и время окончания бронирования")
 
         if end_time:
+            work_end = datetime.time(hour=0, minute=0, second=0)
+            work_start = datetime.time(hour=12, minute=0, second=0)
             if end_time < time_now:
                 raise ValidationError(
                     "Дата и время окончания бронирования не может быть в прошлом"
                 )
-            if (
-                datetime.time(hour=0, minute=0, second=0)
-                < end_time.time()
-                < datetime.time(hour=12, minute=0, second=0)
-            ):
+            if work_end < end_time.time() < work_start:
                 raise ValidationError("Ресторан работает с 12-00 до 00-00")
         return end_time
 
@@ -132,16 +128,14 @@ class ReservationUpdateForm(forms.ModelForm):
             raise ValidationError("Укажите дату и время начала бронирования")
 
         if start_time:
+            work_end = datetime.time(hour=0, minute=0, second=0)
+            work_start = datetime.time(hour=12, minute=0, second=0)
             if start_time < time_now:
                 raise ValidationError(
                     "Дата и время начала бронирования не может быть в прошлом"
                 )
-        if (
-            datetime.time(hour=0, minute=0, second=0)
-            < start_time.time()
-            < datetime.time(hour=12, minute=0, second=0)
-        ):
-            raise ValidationError("Ресторан работает с 12-00 до 00-00")
+            if work_end < start_time.time() < work_start:
+                raise ValidationError("Ресторан работает с 12-00 до 00-00")
         return start_time
 
     def clean_end_time(self):
@@ -153,16 +147,14 @@ class ReservationUpdateForm(forms.ModelForm):
             raise ValidationError("Укажите дату и время окончания бронирования")
 
         if end_time:
+            work_end = datetime.time(hour=0, minute=0, second=0)
+            work_start = datetime.time(hour=12, minute=0, second=0)
             if end_time < time_now:
                 raise ValidationError(
                     "Дата и время окончания бронирования не может быть в прошлом"
                 )
-        if (
-            datetime.time(hour=0, minute=0, second=0)
-            < end_time.time()
-            < datetime.time(hour=12, minute=0, second=0)
-        ):
-            raise ValidationError("Ресторан работает с 12-00 до 00-00")
+            if work_end < end_time.time() < work_start:
+                raise ValidationError("Ресторан работает с 12-00 до 00-00")
         return end_time
 
     def clean(self):
